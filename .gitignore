@@ -1,0 +1,19 @@
+# Large data files
+data/zomato.csv
+data/zomato_cleaned.csv
+data/zomato_featured.csv
+
+# Model file
+app/model.pkl
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code settings
+.vscode/
+
+# Virtual environment
+venv/
+env/

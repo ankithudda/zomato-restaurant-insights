@@ -2,6 +2,9 @@
 
 A complete data analysis and machine learning web app built on the Zomato Bangalore dataset (51,000+ restaurants).
 
+## 🚀 Live Demo
+👉 [Click here to try the app](https://zomato-predictor.streamlit.app)
+
 ## 🔥 Live Features
 - Interactive EDA dashboard with Plotly charts
 - ML-powered restaurant success predictor

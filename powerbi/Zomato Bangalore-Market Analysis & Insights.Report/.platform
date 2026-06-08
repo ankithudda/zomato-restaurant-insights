@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Zomato Bangalore-Market Analysis & Insights"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c57af818-3317-4759-9c12-595cb432e0e9"
+  }
+}

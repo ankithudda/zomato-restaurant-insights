@@ -1,0 +1,100 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "6486402e428ad4e31e39",
+  "position": {
+    "x": 279.08644384540327,
+    "y": 520.23880794482943,
+    "z": 2000,
+    "height": 199.15391866638,
+    "width": 317.02052359138042,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "zomato"
+                    }
+                  },
+                  "Property": "online_order"
+                }
+              },
+              "queryRef": "zomato.online_order",
+              "nativeQueryRef": "online_order",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "zomato"
+                        }
+                      },
+                      "Property": "votes"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "Sum(zomato.votes)",
+              "nativeQueryRef": "Count of votes"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "zomato"
+                      }
+                    },
+                    "Property": "votes"
+                  }
+                },
+                "Function": 5
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Does Online Ordering Impact Engagement?'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

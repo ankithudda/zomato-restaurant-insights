@@ -1,0 +1,167 @@
+table zomato
+	lineageTag: 03f3899a-7325-4248-b398-f44e29c3e37c
+
+	measure 'Total Restaurants' = DISTINCTCOUNT(zomato[name])
+		formatString: 0
+		lineageTag: e9a025e9-cc37-4257-9618-1e1cfa050577
+
+	column url
+		dataType: string
+		lineageTag: c29f0cb7-a03e-40a7-ad8a-c3c667285bd9
+		summarizeBy: none
+		sourceColumn: url
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		lineageTag: 84936a98-3198-4398-944c-353823d8b3c9
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 12b95fe5-ee4e-413a-8972-bf315a99dffb
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column online_order
+		dataType: string
+		lineageTag: 753c2ec3-55ad-41fb-971d-62d05b690e11
+		summarizeBy: none
+		sourceColumn: online_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column book_table
+		dataType: string
+		lineageTag: 177e2e0b-877b-447b-a6a3-d60f1fee25ec
+		summarizeBy: none
+		sourceColumn: book_table
+
+		annotation SummarizationSetBy = Automatic
+
+	column rate
+		dataType: double
+		lineageTag: fd3875a0-f4ea-47c3-a53b-db1507b715e4
+		summarizeBy: sum
+		sourceColumn: rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column votes
+		dataType: int64
+		formatString: 0
+		lineageTag: be5c7dab-1b44-4417-84fa-0de1d7149b5a
+		summarizeBy: sum
+		sourceColumn: votes
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: 731aa773-8ec7-47b6-9f31-97e70d588123
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column location
+		dataType: string
+		lineageTag: 1a0b07fd-a17e-4358-8562-d81e965d9341
+		summarizeBy: none
+		sourceColumn: location
+
+		annotation SummarizationSetBy = Automatic
+
+	column rest_type
+		dataType: string
+		lineageTag: d1ceca07-ef17-4e26-99e5-c9296efdc855
+		summarizeBy: none
+		sourceColumn: rest_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column dish_liked
+		dataType: string
+		lineageTag: d24fbd8a-6262-48c1-b4a5-6aeb722900bd
+		summarizeBy: none
+		sourceColumn: dish_liked
+
+		annotation SummarizationSetBy = Automatic
+
+	column cuisines
+		dataType: string
+		lineageTag: 6b8ab5d0-1be7-47ac-b8be-12014dabddb6
+		summarizeBy: none
+		sourceColumn: cuisines
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'approx_cost(for two people)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b6890f7-cb83-40ba-a84e-faf23c4143e7
+		summarizeBy: sum
+		sourceColumn: approx_cost(for two people)
+
+		annotation SummarizationSetBy = Automatic
+
+	column reviews_list
+		dataType: string
+		lineageTag: 8acbbcdd-5e59-452d-93f6-468781c2af22
+		summarizeBy: none
+		sourceColumn: reviews_list
+
+		annotation SummarizationSetBy = Automatic
+
+	column menu_item
+		dataType: string
+		lineageTag: 19f5a758-6dbb-4781-9e6c-cfd0e262c82c
+		summarizeBy: none
+		sourceColumn: menu_item
+
+		annotation SummarizationSetBy = Automatic
+
+	column listed_in(type)
+		dataType: string
+		lineageTag: 1987a176-fa9a-4df3-9f60-2c9ece347462
+		summarizeBy: none
+		sourceColumn: listed_in(type)
+
+		annotation SummarizationSetBy = Automatic
+
+	column listed_in(city)
+		dataType: string
+		lineageTag: aa4103e2-fba7-4b50-a6af-fafd3d9dc680
+		summarizeBy: none
+		sourceColumn: listed_in(city)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition zomato = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\New folder\Doc related to Projects\zomoto insight by claude\zomato.csv"),[Delimiter=",", Columns=17, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"url", type text}, {"address", type text}, {"name", type text}, {"online_order", type text}, {"book_table", type text}, {"rate", type text}, {"votes", Int64.Type}, {"phone", type text}, {"location", type text}, {"rest_type", type text}, {"dish_liked", type text}, {"cuisines", type text}, {"approx_cost(for two people)", Int64.Type}, {"reviews_list", type text}, {"menu_item", type text}, {"listed_in(type)", type text}, {"listed_in(city)", type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","/5","",Replacer.ReplaceText,{"rate"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","NEW","",Replacer.ReplaceText,{"rate"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","-","",Replacer.ReplaceText,{"rate"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value2",{{"rate", type number}, {"approx_cost(for two people)", type text}}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Changed Type1",",","",Replacer.ReplaceText,{"approx_cost(for two people)"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Replaced Value3",{{"approx_cost(for two people)", Int64.Type}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

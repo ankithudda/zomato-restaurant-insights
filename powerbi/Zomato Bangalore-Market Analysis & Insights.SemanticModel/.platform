@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Zomato Bangalore-Market Analysis & Insights"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "68eb3e45-4b6e-47f4-8fdc-2aacb32f6ed5"
+  }
+}

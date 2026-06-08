@@ -16,6 +16,16 @@ A complete data analysis and machine learning web app built on the Zomato Bangal
 - **Matplotlib & Seaborn** — exploratory visualization
 - **Scikit-learn** — machine learning pipeline
 - **Streamlit & Plotly** — interactive web app
+- **Power BI** — business intelligence dashboard
+- **Joblib** — model serialization
+
+## 📊 Power BI Dashboard
+
+**File:** `powerbi/` folder (.pbip format)
+
+**To view:** 
+1. Clone the repository
+2. Open `.pbip` file in Power BI Desktop (version 2.117+)
 
 ## 📁 Project Structure
 
@@ -35,6 +45,10 @@ zomato-insights/
 │   ├── day4_feature_engineering.py
 │   └── day5_model.py
 ├── outputs/                ← saved charts
+├── powerbi/
+│   ├── Zomato_Bangalore_Dashboard.pbip             ← Lightweight project shortcut
+│   ├── Zomato_Bangalore_Dashboard.Report/          ← Reports and layout metadata
+│   └── Zomato_Bangalore_Dashboard.SemanticModel/   ← DAX measures and schema settings
 ├── .gitignore
 ├── requirements.txt
 └── README.md
